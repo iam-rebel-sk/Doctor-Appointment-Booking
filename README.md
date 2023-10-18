@@ -31,7 +31,7 @@ This Java backend project provides a RESTful API for managing patients, doctors,
 #### Patient Controller
 
 ```http
- POST /patient/signUp
+  POST /patient/signUp
 ```
 
  Description                |
@@ -39,7 +39,7 @@ This Java backend project provides a RESTful API for managing patients, doctors,
 Allows patients to sign up for the system. |
 
 ```http
- POST /patient/signIn
+  POST /patient/signIn
 ```
 
  Description                |
