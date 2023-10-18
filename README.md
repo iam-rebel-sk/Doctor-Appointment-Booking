@@ -230,3 +230,7 @@ Follow these steps to set up and run the project:
 - **Build Tool:** Maven
 - **Database:** MySQL Workbench
 
+## Contact
+For questions or feedback, please contact [Rebel Sk](mailto:iamrebelsk@gmail.com).
+
+
