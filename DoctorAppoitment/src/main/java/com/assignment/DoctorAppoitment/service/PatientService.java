@@ -146,10 +146,22 @@ public class PatientService {
             Patient existingPatient = patientRepo.findFirstByPatientEmail(email);
 
 
+
             try {
                 String encryptedPassword = PasswordEncryptor.encrypt(newPassword);
-                existingPatient.setPassword(encryptedPassword);
-                return "Password changed successfully";
+
+                if (!encryptedPassword.equals(existingPatient.getPassword())) {
+                    existingPatient.setPassword(encryptedPassword);
+                    patientRepo.save(existingPatient);
+
+
+                    String tokenValue = authInfo.getTokenValue();
+                    patientTokenService.deleteToken(tokenValue);
+                    return "Password changed successfully. Please log in again";
+                }
+                else {
+                    return "Password should not be same as previous";
+                }
 
             } catch (NoSuchAlgorithmException e) {
                 return "Internal server error. Please try again later";
@@ -183,6 +195,7 @@ public class PatientService {
                 try {
                     String encryptedPassword = PasswordEncryptor.encrypt(newPassword);
                     existingPatient.setPassword(encryptedPassword);
+                    patientRepo.save(existingPatient);
 
                     return "Password change successfully";
 

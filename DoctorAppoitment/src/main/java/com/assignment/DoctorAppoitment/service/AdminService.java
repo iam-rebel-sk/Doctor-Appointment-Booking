@@ -119,8 +119,19 @@ public class AdminService {
 
             try {
                 String encryptedPassword = PasswordEncryptor.encrypt(newPassword);
-                existingAdmin.setAdminPassword(encryptedPassword);
-                return "Password changed successfully";
+
+                if (!encryptedPassword.equals(existingAdmin.getAdminPassword())) {
+                    existingAdmin.setAdminPassword(encryptedPassword);
+                    adminRepo.save(existingAdmin);
+
+
+                    String tokenValue = authInfo.getTokenValue();
+                    adminTokenService.deleteToken(tokenValue);
+                    return "Password changed successfully. Please log in again";
+                }
+                else {
+                    return "Password should not be same as previous";
+                }
 
             } catch (NoSuchAlgorithmException e) {
                 return "Internal server issue. Try again later";
@@ -144,6 +155,7 @@ public class AdminService {
                 try {
                     String encryptedPassword = PasswordEncryptor.encrypt(newPassword);
                     existingAdmin.setAdminPassword(encryptedPassword);
+                    adminRepo.save(existingAdmin);
 
                     return "Password change successfully";
 

@@ -32,7 +32,7 @@ public class Doctor {
 
     private String docContact;
 
-//    @OneToMany(mappedBy = "doctor")
-//    List<Appointment> appointments;
+    @OneToMany(mappedBy = "doctor")
+    List<Appointment> appointments;
 
 }

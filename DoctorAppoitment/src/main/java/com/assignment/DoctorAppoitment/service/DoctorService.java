@@ -1,5 +1,6 @@
 package com.assignment.DoctorAppoitment.service;
 
+import com.assignment.DoctorAppoitment.model.Appointment;
 import com.assignment.DoctorAppoitment.model.DTO.AuthenticationDTO;
 import com.assignment.DoctorAppoitment.model.DTO.DoctorAddingDTO;
 import com.assignment.DoctorAppoitment.model.Doctor;
@@ -9,6 +10,8 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DoctorService {
     @Autowired
@@ -16,6 +19,9 @@ public class DoctorService {
 
     @Autowired
     AdminTokenService adminTokenService;
+
+    @Autowired
+    AppointmentService appointmentService;
 
     // adding new doctor
     public String addDoctor(@NotNull DoctorAddingDTO addInfo) {
@@ -71,4 +77,5 @@ public class DoctorService {
             return null;
         }
     }
+
 }
