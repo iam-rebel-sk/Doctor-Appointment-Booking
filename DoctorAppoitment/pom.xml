@@ -14,7 +14,7 @@
 	<name>DoctorAppoitment</name>
 	<description>App for booking appoint for doctor</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
